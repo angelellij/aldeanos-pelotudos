@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Aldeanos Pelotudos</title>
+    <!-- Import Materialize CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <!-- Import Google Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        .player-card {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 40px;
+  }
+  .player-photo {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+  }
+  .civs-overlay {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    gap: 4px;
+    transform: translate(30%, 30%);
+  }
+  .civ-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+  }
+  .player-info {
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .collection .collection-item.avatar {
+    min-height: 0 !important;
+    }
+    </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav style="background-color: #244C7F !important">
+    <div class="nav-wrapper container">
+      <!-- Logo -->
+      <a href="#!" class="brand-logo" style="display: grid;grid-template-columns: auto auto;"> 
+        <img src="imgs/logo.webp" alt="logo" height="125"/> 
+        Aldeanos Pelotudos
+    </a>
+      <!-- Mobile Menu Trigger -->
+      <a href="#" data-target="mobile-menu" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <!-- Right Links -->
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#historia">Historia</a></li>
+        <li><a href="#equipo">Equipo</a></li>
+        <li><a href="#logros">Logros</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Mobile Sidebar -->
+  <ul class="sidenav" id="mobile-menu">
+    <li><a href="#historia">Historia</a></li>
+    <li><a href="#equipo">Equipo</a></li>
+    <li><a href="#logros">Logros</a></li>
+  </ul>
+
+  <!-- Page Content -->
+  <section style="background: linear-gradient(135deg, #244C7F, #4a148c); height: 75vh; display: flex; align-items: center; justify-content: center; color: white; text-align: center;">
+      <div>
+          <h1 style="text-shadow: 0 0 10px #00e5ff;">Aldeanos Pelotudos</h1>
+          <p class="flow-text">El nivel de este equipo es similar al IQ de los aldeanos.</p>
+          <a href="#equipo" class="btn-large">Conocenos</a>
+      </div>
+  </section>
+  <div class="container" style="margin-top: 0;">
+
+
+    <section id="historia" class="section grey lighten-4">
+        <div class="container">
+            <h2 class="center-align">Nuestra Historia</h2>
+            <ul class="collection z-depth-1" id="history-container">
+            <!-- Se llena dinámicamente con JS -->
+            </ul>
+        </div>
+    </section>
+
+<section id="equipo" class="section container">
+  <h3 class="center-align">Nuestro Equipo</h3>
+  <div class="row" id="team-container">
+    <!-- Aquí se insertan dinámicamente los jugadores -->
+  </div>
+</section>
+
+    <h2 id="logros">Logros</h2>
+    <p>Contenido de los logros...</p>
+  </div>
+
+  <!-- Import Materialize JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    // Initialize mobile menu
+    document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('.sidenav');
+      M.Sidenav.init(elems);
+    });
+
+
+  const history = [
+    {
+      date: "Febrero de 1975",
+      icon: "person",
+      color: "blue",
+      text: 'Nace nuestro primer jugador <b>Leandro "Fleita" Montebelli</b>.'
+    },
+    {
+      date: "Marzo de 2020",
+      icon: "sports_esports",
+      color: "green",
+      text: 'Encerrados físicamente pero no de espíritu, la flia Ayerza salda sus cuentas en <b>AOE2</b>.'
+    },
+    {
+      date: "Junio de 2020",
+      icon: "group",
+      color: "amber",
+      text: 'Se crea el clan de <b>Aldeanos Pelotudos</b>.'
+    },
+    {
+      date: "Julio de 2020",
+      icon: "emoji_events",
+      color: "red",
+      text: 'Los APs se enfrentan al Barca y le ganan por primera vez.'
+    },
+    {
+      date: "Agosto de 2020",
+      icon: "add_circle",
+      color: "purple",
+      text: 'Los APs fichan jugadores del Barca.'
+    },
+    {
+      date: "Diciembre de 2021",
+      icon: "military_tech",
+      color: "teal",
+      text: 'De la mano de <b>Power to the People</b>, los APs ganan su primer torneo.'
+    },
+    {
+      date: "Noviembre de 2022",
+      icon: "person_add",
+      color: "deep-orange",
+      text: 'Ingresa <b>Santiago "Blash" Fumeo</b>, de Marcado del Age al Clan.'
+    },
+    {
+      date: "Enero de 2023",
+      icon: "group_off",
+      color: "grey",
+      text: '<b>Blash</b> intenta y falla en traer amigos suyos.'
+    },
+    {
+      date: "Diciembre de 2024",
+      icon: "stars",
+      color: "indigo",
+      text: '<b>Blash</b> logra convencer de entrar a APs al de los escuditos, <b>Zethex</b>.'
+    }
+  ];
+
+  const team = [
+  { name: "Peltevis", desc: "El va al frente en oscura, no importa si sirve o no.", photo: "https://picsum.photos/200?random=1", civs: ["mongoles","britanos","lituanos"] },
+  { name: "Pancho", desc: "Off de books desde la cuna.", photo: "https://picsum.photos/200?random=2", civs: ["mayas","etiopes","incas"] },
+  { name: "Tom4s", desc: "Basicamente te couchea sobre como hacer las casas.", photo: "https://picsum.photos/200?random=3", civs: ["britanos","britanos","britanos"] },
+  { name: "Power to the People", desc: "El estratega de las civs raras.", photo: "https://picsum.photos/200?random=4", civs: ["malayos","khemer","dravidicos"] },
+  { name: "Noxi", desc: "El que aparece cada tanto.", photo: "https://picsum.photos/200?random=5", civs: ["francos","francos","francos"] },
+  { name: "Blash", desc: "Solo meta caballos, y unos matesitos.", photo: "https://picsum.photos/200?random=6", civs: ["bereber","etiopes","bizantino"] },
+  { name: "Zethex", desc: "El señor de los escudos.", photo: "https://picsum.photos/200?random=7", civs: ["britanos","malayos","khemer"] },
+  { name: "Guna", desc: "El maestro, el mejor de todos.", photo: "https://picsum.photos/200?random=8", civs: ["civ","civ","civ"] },
+  { name: "PrimoMcFly", desc: "Dale tiempo que arme el army.", photo: "https://picsum.photos/200?random=9", civs: ["turcos","coreanos","mayas"] },
+  { name: "Fleita", desc: "Es más rápido que era, no sé cómo.", photo: "https://picsum.photos/200?random=10", civs: ["mali","mali","mali"] },
+  { name: "Tozax", desc: "El mentor. Solía ser mejor, después se dedicó a enseñar.", photo: "https://picsum.photos/200?random=11", civs: ["lituano","teuton","franco"] },
+  { name: "Rulolord", desc: "El de los arietes cubiertos de asedio.", photo: "https://picsum.photos/200?random=12", civs: ["francos","britanos","britanos"] },
+  { name: "Cangreha", desc: "La desaparecida. 3 veces ganadora del showmatch.", photo: "https://picsum.photos/200?random=13", civs: ["bereber","bereber","bereber"] }
+];
+
+  const hcontainer = document.getElementById("history-container");
+
+  history.forEach(event => {
+    const li = document.createElement("li");
+    li.className = "collection-item avatar";
+    li.innerHTML = `
+      <i class="material-icons circle ${event.color}">${event.icon}</i>
+      <span class="title"><b>${event.date}</b></span>
+      <p>${event.text}</p>
+    `;
+    hcontainer.appendChild(li);
+  });
+
+  
+
+const container = document.getElementById("team-container");
+
+team.forEach(player => {
+  const col = document.createElement("div");
+  col.className = "col s12 m6 l4 center-align";
+
+  col.innerHTML = `
+    <div class="player-card">
+      <img src="${player.photo}" alt="${player.name}" class="player-photo">
+      <div class="civs-overlay">
+        ${player.civs.map(civ => `<img src="/img/civs/${civ}.png" alt="${civ}" class="civ-icon">`).join('')}
+      </div>
+    </div>
+    <div class="player-info">
+      <h5>${player.name}</h5>
+      <p>${player.desc}</p>
+    </div>
+  `;
+
+  container.appendChild(col);
+});
+
+  </script>
+
+  
+</body>
+</html>
