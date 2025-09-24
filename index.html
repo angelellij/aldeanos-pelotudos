@@ -277,9 +277,9 @@ team.forEach(player => {
 
   col.innerHTML = `
     <div class="player-card">
-      <img src="/imgs/jugadores/${player.name.toLowerCase().replaceAll(" ", "_")}.jpeg" alt="${player.name}" class="player-photo">
+      <img src="./imgs/jugadores/${player.name.toLowerCase().replaceAll(" ", "_")}.jpeg" alt="${player.name}" class="player-photo">
       <div class="civs-overlay">
-        ${player.civs.map(civ => `<img src="/imgs/civs/${civ}.png" alt="${civ}" class="civ-icon">`).join('')}
+        ${player.civs.map(civ => `<img src="./imgs/civs/${civ}.png" alt="${civ}" class="civ-icon">`).join('')}
       </div>
     </div>
     <div class="player-info">
