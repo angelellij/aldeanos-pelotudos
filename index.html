@@ -9,11 +9,13 @@
     <!-- Import Google Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
-        .player-card {
-    position: relative;
-    display: inline-block;
-    margin-bottom: 40px;
-  }
+    .player-col{
+      height:400px;
+    }
+    .player-card {
+      position: relative;
+      display: inline-block;
+    }
   .player-photo {
     border-radius: 50%;
     width: 200px;
@@ -31,9 +33,22 @@
   .civ-icon {
     width: 40px;
     height: 40px;
-    border-radius: 8px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    position: absolute;
   }
+
+  .civ-icon:nth-child(1) {
+    top: -75px;
+    right:-7px;
+  }
+  .civ-icon:nth-child(2) {
+    top:-46px;
+    right:21px;
+  }
+  .civ-icon:nth-child(3) {
+    top: -30px;
+    right:60px;
+  }
+
   .player-info {
     text-align: center;
     margin-top: 10px;
@@ -47,7 +62,7 @@
 <body>
 
   <!-- Navbar -->
-  <nav style="background-color: #244C7F !important">
+  <nav style="background-color: #244C7F !important;position:fixed; z-index:100;">
     <div class="nav-wrapper container">
       <!-- Logo -->
       <a href="#!" class="brand-logo" style="display: grid;grid-template-columns: auto auto;"> 
@@ -92,16 +107,23 @@
         </div>
     </section>
 
-<section id="equipo" class="section container">
-  <h3 class="center-align">Nuestro Equipo</h3>
-  <div class="row" id="team-container">
-    <!-- Aquí se insertan dinámicamente los jugadores -->
+<section id="equipo" class="section grey lighten-3">
+  <div class="container">
+    <h3 class="center-align">Nuestro Equipo</h3>
+    <div class="row" id="team-container">
+      <!-- Aquí se insertan dinámicamente los jugadores -->
+    </div>
   </div>
 </section>
 
-    <h2 id="logros">Logros</h2>
-    <p>Contenido de los logros...</p>
+<section id="logros" class="section grey lighten-4">
+  <div class="container">
+    <h2 class="center-align">Nuestros Logros</h2>
+    <ul class="collection z-depth-1" id="logros-container">
+      <!-- Se llena dinámicamente -->
+    </ul>
   </div>
+</section>
 
   <!-- Import Materialize JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -136,13 +158,13 @@
       date: "Julio de 2020",
       icon: "emoji_events",
       color: "red",
-      text: 'Los APs se enfrentan al Barca y le ganan por primera vez.'
+      text: 'Los APs se enfrentan al Barça y le ganan por primera vez.'
     },
     {
       date: "Agosto de 2020",
       icon: "add_circle",
       color: "purple",
-      text: 'Los APs fichan jugadores del Barca.'
+      text: 'Los APs fichan jugadores del Barça.'
     },
     {
       date: "Diciembre de 2021",
@@ -152,8 +174,7 @@
     },
     {
       date: "Noviembre de 2022",
-      icon: "person_add",
-      color: "deep-orange",
+      icon: "person_add",      color: "deep-orange",
       text: 'Ingresa <b>Santiago "Blash" Fumeo</b>, de Marcado del Age al Clan.'
     },
     {
@@ -171,20 +192,67 @@
   ];
 
   const team = [
-  { name: "Peltevis", desc: "El va al frente en oscura, no importa si sirve o no.", photo: "https://picsum.photos/200?random=1", civs: ["mongoles","britanos","lituanos"] },
-  { name: "Pancho", desc: "Off de books desde la cuna.", photo: "https://picsum.photos/200?random=2", civs: ["mayas","etiopes","incas"] },
-  { name: "Tom4s", desc: "Basicamente te couchea sobre como hacer las casas.", photo: "https://picsum.photos/200?random=3", civs: ["britanos","britanos","britanos"] },
-  { name: "Power to the People", desc: "El estratega de las civs raras.", photo: "https://picsum.photos/200?random=4", civs: ["malayos","khemer","dravidicos"] },
-  { name: "Noxi", desc: "El que aparece cada tanto.", photo: "https://picsum.photos/200?random=5", civs: ["francos","francos","francos"] },
-  { name: "Blash", desc: "Solo meta caballos, y unos matesitos.", photo: "https://picsum.photos/200?random=6", civs: ["bereber","etiopes","bizantino"] },
-  { name: "Zethex", desc: "El señor de los escudos.", photo: "https://picsum.photos/200?random=7", civs: ["britanos","malayos","khemer"] },
-  { name: "Guna", desc: "El maestro, el mejor de todos.", photo: "https://picsum.photos/200?random=8", civs: ["civ","civ","civ"] },
-  { name: "PrimoMcFly", desc: "Dale tiempo que arme el army.", photo: "https://picsum.photos/200?random=9", civs: ["turcos","coreanos","mayas"] },
-  { name: "Fleita", desc: "Es más rápido que era, no sé cómo.", photo: "https://picsum.photos/200?random=10", civs: ["mali","mali","mali"] },
-  { name: "Tozax", desc: "El mentor. Solía ser mejor, después se dedicó a enseñar.", photo: "https://picsum.photos/200?random=11", civs: ["lituano","teuton","franco"] },
-  { name: "Rulolord", desc: "El de los arietes cubiertos de asedio.", photo: "https://picsum.photos/200?random=12", civs: ["francos","britanos","britanos"] },
-  { name: "Cangreha", desc: "La desaparecida. 3 veces ganadora del showmatch.", photo: "https://picsum.photos/200?random=13", civs: ["bereber","bereber","bereber"] }
+  { 
+    name: "Peltevis", 
+    desc: "El va al frente en oscura, no importa si sirve o no.", 
+    civs: ["mongols","britons","lithuanians"] 
+  },
+  { 
+    name: "Pancho", 
+    desc: "Off de books desde la cuna.", 
+    civs: ["mayans","ethiopians","tatars"] 
+  },
+    { 
+    name: "FrankieA10", 
+    desc: "Su nombre indica la civ.", 
+    civs: ["franks","franks","franks"] 
+  },
+  { name: "Tom4s", desc: "Basicamente te couchea sobre como hacer las casas.", civs: ["britons","britons","britons"] },
+  { name: "Power to the People", desc: "El de los mods más bellos.",civs: ["malay","khmer","dravidians"] },
+  { name: "Noxi", desc: "El que aparece cada tanto.", civs: ["franks","magyards","britons"] },
+  { name: "Blash", desc: "Solo meta caballos, y unos matesitos.", civs: ["berbers","ethiopians","turks"] },
+  { name: "Zethex", desc: "El artesano de los escudos.", civs: ["britons","malay","khmer"] },
+  { name: "Guna", desc: "El señor de mejor ELO.", civs: ["franks","ethiopians","britons"] },
+  { name: "PrimoMcFly", desc: "Dale tiempo que arme el army.", civs: ["turks","koreans","mayans"] },
+  { name: "Fleita", desc: "Es más rápido que era, no sé cómo.", civs: ["malians","bengalis","italians"] },
+  { name: "Tozax", desc: "El mentor. Solía ser mejor, después se dedicó a enseñar.", civs: ["lithuanians","teutons","franks"] },
+  { name: "Rulolord", desc: "El de los arietes cubiertos de asedio.", civs: ["franks","britons","franks"] },
+  { name: "Cangreha", desc: "La desaparecida. 3 veces ganadora del showmatch.", civs: ["berbers","ethiopians","berbers"] }
 ];
+
+const logros = [
+    {
+      year: "2021",
+      icon: "emoji_events",
+      color: "amber",
+      text: "Ganamos por escritorio nuestro primer partido en un torneo grupal."
+    },
+    {
+      year: "2022",
+      icon: "military_tech",
+      color: "teal",
+      text: "Por primera vez un jugador nuestro ganó un torneo."
+    },
+    {
+      year: "2025",
+      icon: "stars",
+      color: "deep-purple",
+      text: "Futuros ganadores de la Masters of Nomad."
+    }
+  ];
+
+  const logrosContainer = document.getElementById("logros-container");
+
+  logros.forEach(logro => {
+    const li = document.createElement("li");
+    li.className = "collection-item avatar";
+    li.innerHTML = `
+      <i class="material-icons circle ${logro.color}">${logro.icon}</i>
+      <span class="title"><b>${logro.year}</b></span>
+      <p>${logro.text}</p>
+    `;
+    logrosContainer.appendChild(li);
+  });
 
   const hcontainer = document.getElementById("history-container");
 
@@ -205,13 +273,13 @@ const container = document.getElementById("team-container");
 
 team.forEach(player => {
   const col = document.createElement("div");
-  col.className = "col s12 m6 l4 center-align";
+  col.className = "col s12 m6 l4 center-align player-col";
 
   col.innerHTML = `
     <div class="player-card">
-      <img src="${player.photo}" alt="${player.name}" class="player-photo">
+      <img src="/imgs/jugadores/${player.name.toLowerCase().replaceAll(" ", "_")}.jpeg" alt="${player.name}" class="player-photo">
       <div class="civs-overlay">
-        ${player.civs.map(civ => `<img src="/img/civs/${civ}.png" alt="${civ}" class="civ-icon">`).join('')}
+        ${player.civs.map(civ => `<img src="/imgs/civs/${civ}.png" alt="${civ}" class="civ-icon">`).join('')}
       </div>
     </div>
     <div class="player-info">
